@@ -1,0 +1,11 @@
+*.xcuserstate
+xcuserdata/
+*.dmg
+.DS_Store
+DerivedData/
+.build/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.moved-aside
