@@ -15,80 +15,31 @@
   <a href="https://cleanmackeyboard.vercel.app">Website</a>
 </p>
 
----
-
-## Why
-
-Cleaning a keyboard while the computer is on is risky — one accidental keystroke can delete code, send an unfinished message, or trigger something worse. CleanMacKeyboard blocks all key events (including modifiers) with a single click and restores them just as easily.
-
-## How It Works
-
-The app creates a system-level **CGEventTap** that intercepts every keyboard event (`keyDown`, `keyUp`, `flagsChanged`) before any other process receives it. While locked, only whitelisted keys (media keys, brightness controls) pass through. A configurable **force-quit combo** instantly unlocks the keyboard even if the app is frozen.
-
-Blocked events are counted and displayed so you know exactly what was prevented.
-
 ## Features
 
 - **One-click lock/unlock** from the menu bar
-- **Full keyboard blocking** — modifiers, alphanumeric, function keys — everything is captured
-- **Force-quit combo** — a customisable shortcut (default ⌘⇧Q) that unlocks instantly
-- **Whitelisted media keys** — volume, brightness, play/pass through while locked
-- **Blocked-events counter** — see how many keystrokes were prevented
-- **Auto-unlock on sleep** — optionally unlock when the Mac sleeps
-- **Lock overlay** — full-screen overlay on all displays while locked
-- **Hold-to-unlock** — requires a deliberate press to prevent accidental unlock
-- **Session timer** — tracks how long the keyboard has been locked
-- **Launch at login** — starts automatically in the menu bar
+- **Force-quit combo** — customisable shortcut (default ⌘⇧Q)
+- **Whitelisted media keys** — volume, brightness pass through
+- **Auto-unlock on sleep**
+- **Full-screen lock overlay**
+- **Blocked-events counter**
+- **Launch at login**
 
 ## Requirements
 
 - macOS **14.0** or later
-- **Accessibility permission** (required by CGEventTap)
+- **Accessibility permission**
 
 ## Installation
 
-1. Download the latest DMG from the [releases page](https://github.com/dqev/cleanmackeyboard/releases)
+1. Download the [latest DMG](https://github.com/dqev/cleanmackeyboard/releases/download/v1.0.0/CleanMacKeyboard.dmg)
 2. Drag **CleanMacKeyboard.app** to **Applications**
-3. Right-click → **Open** (first launch only — Gatekeeper warning)
+3. Right-click → **Open** (first launch only)
 4. Grant **Accessibility** permission when prompted
 
-## Security & Permissions
+## Security
 
-CleanMacKeyboard uses `CGEvent.tapCreate` which requires the **Accessibility** permission — the same API used by Karabiner-Elements, BetterTouchTool, and macOS Shortcuts.
-
-The app does **not** require:
-- Full Disk Access
-- Screen Recording
-- Input Monitoring
-- Network access (the app is fully offline)
-
-## Building from Source
-
-```bash
-git clone https://github.com/dqev/cleanmackeyboard.git
-cd CleanMacKeyboard
-xcodebuild -project CleanMacKeyboard.xcodeproj -scheme CleanMacKeyboard -configuration Release build
-```
-
-## Architecture
-
-```
-CleanMacKeyboard.app/
-├── CleanMacKeyboardApp.swift       # App entry, window management
-├── Core/
-│   ├── KeyboardLocker.swift        # Event tap, lock/unlock, thread-safe state
-│   └── KeyCombo.swift              # Key code + modifier matching
-├── Models/
-│   └── AppSettings.swift           # UserDefaults-backed settings
-└── UI/
-    ├── ContentView.swift           # Main app window
-    ├── SettingsView.swift          # Menu-bar popover content
-    ├── MenuBarController.swift     # NSStatusItem, popover, lock overlays
-    ├── LockOverlayView.swift       # Full-screen lock overlay with hold gesture
-    ├── OnboardingView.swift        # First-launch accessibility guide
-    ├── WhitelistKeyPicker.swift    # Media key selection grid
-    └── DesignSystem.swift          # Colors, spacing, typography
-```
+Requires only **Accessibility** access — the same permission used by Karabiner-Elements and BetterTouchTool. No network access, no Full Disk Access, no Screen Recording.
 
 ## License
 
