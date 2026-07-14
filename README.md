@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="favicon/og-image.jpg" alt="CleanMacKeyboard" width="600">
+  <img src="favicon/og-image.jpg" alt="CleanMacKeyboard" width="100%">
 </p>
 
 <h1 align="center">CleanMacKeyboard</h1>
